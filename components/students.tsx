@@ -5,8 +5,9 @@ import { env } from "@/lib/config";
 import DeleteStudent from "./DeleteStudent";
 import UpdateStudent from "./UpdateStudent";
 import { AlertDestructive } from "./AlertDestructive";
-import Image from "next/image";
+
 import { PaginationMenu } from "./PaginationMenu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const apiUrl = env.API_URL!;
 
@@ -46,13 +47,10 @@ export default async function StudentsTable({
             <tr key={student.id}>
               <td className="px-4 py-3 flex flex-col gap-3 border-b border-l border-r">
                 <div>ID: {student.student_id}</div>
-                <Image
-                  src={student.image_url}
-                  alt={student.name}
-                  width={50}
-                  height={50}
-                  className="object-cover object-center w-8 h-8 rounded-full aspect-square"
-                />
+                <Avatar>
+                  <AvatarImage src={student.image_url} />
+                  <AvatarFallback>{student.name[0]}</AvatarFallback>
+                </Avatar>
                 <div>Name: {student.name}</div>
                 <div>Email: {student.email}</div>
                 <div className="flex items-center">
@@ -82,13 +80,11 @@ export default async function StudentsTable({
             >
               <TableData text={student.student_id} />
               <td className="flex items-center gap-3 py-3">
-                <Image
-                  src={student.image_url}
-                  alt={student.name}
-                  width={50}
-                  height={50}
-                  className="object-cover object-center w-8 h-8 rounded-full aspect-square"
-                />
+                <Avatar>
+                  <AvatarImage src={student.image_url} />
+                  <AvatarFallback>{student.name[0]}</AvatarFallback>
+                </Avatar>
+
                 <span>{student.name}</span>
               </td>
               <TableData text={student.email} />
