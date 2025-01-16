@@ -10,7 +10,7 @@ import Image from "next/image";
 import { FileImage, X } from "lucide-react";
 
 // Define validation schema using Zod
-const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 const VALID_FILE_TYPES = ["image/jpeg"];
 
 const studentSchema = z.object({
@@ -25,7 +25,10 @@ const studentSchema = z.object({
   email: z.string().email("Invalid email address"),
   photo: z
     .instanceof(File)
-    .refine((file) => file.size <= MAX_FILE_SIZE, "Photo must be less than 2MB")
+    .refine(
+      (file) => file.size <= MAX_FILE_SIZE,
+      "Photo must be less than 10MB"
+    )
     .refine(
       (file) => VALID_FILE_TYPES.includes(file.type),
       "Photo must be a JPG file"
@@ -121,7 +124,7 @@ const StudentForm: React.FC<Props> = ({ mode, onSubmit, initialData }) => {
           id="email"
           type="email"
           {...register("email")}
-          className={` ${errors.email ? "border-red-500" : ""}`}
+          className={` ${errors.email ? "border-destructive" : ""}`}
         />
         {errors.email && (
           <p className="text-destructive text-sm">{errors.email.message}</p>

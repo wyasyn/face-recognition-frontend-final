@@ -1,6 +1,7 @@
 "use client";
 
 import { logout } from "@/lib/actions";
+import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function Logout() {
@@ -8,12 +9,17 @@ export default function Logout() {
   return (
     <button
       onClick={async () => {
-        await logout();
-        router.push("/");
+        try {
+          await logout();
+          router.push("/");
+        } catch (error) {
+          throw new Error(error as string);
+        }
       }}
-      className="hover:text-foreground duration-300 transition-all"
+      className="hidden sm:flex gap-3 items-center hover:bg-secondary px-3 py-2 duration-300 transition-all rounded-md "
     >
-      logout
+      <LogOut className="w-4 h-4" />{" "}
+      <span className="hidden lg:block">Logout</span>
     </button>
   );
 }

@@ -1,11 +1,12 @@
-import Header from "@/components/Header";
+import RegisterStudent from "@/components/RegisterStudent";
+import Stats from "@/components/Stats";
 import StudentsTable from "@/components/students";
 
 export default function page() {
   return (
     <div>
-      <Header />
-
+      <RegisterStudent />
+      <Stats />
       <StudentsTable />
     </div>
   );

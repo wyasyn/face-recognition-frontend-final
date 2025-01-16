@@ -10,6 +10,7 @@ import { validateUser } from "@/lib/actions";
 import { useState, useEffect, useCallback } from "react";
 import { AlertDestructive } from "./AlertDestructive";
 import { useRouter } from "next/navigation";
+import Logo from "./logo";
 
 export function InputOTPWith() {
   const [value, setValue] = useState("");
@@ -46,6 +47,7 @@ export function InputOTPWith() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-5">
+      <Logo />
       <InputOTP
         maxLength={6}
         value={value}

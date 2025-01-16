@@ -8,14 +8,19 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import StudentForm from "./studentForm";
-import { FilePenLine } from "lucide-react";
+import { Pen } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { env } from "@/lib/config";
 const apiUrl = env.API_URL!;
 
-export default function UpdateStudent({ student_id, name, email }: Student) {
+export default function UpdateStudent({
+  id,
+  student_id,
+  name,
+  email,
+}: Student) {
   const { toast } = useToast();
   const router = useRouter();
   interface DataProps {
@@ -39,7 +44,7 @@ export default function UpdateStudent({ student_id, name, email }: Student) {
 
       // Send the form data
       const response = await axios.post(
-        `${apiUrl}/student/edit/${student_id}`,
+        `${apiUrl}/student/edit/${id}`,
         formData,
         {
           headers: {
@@ -71,14 +76,14 @@ export default function UpdateStudent({ student_id, name, email }: Student) {
   };
   return (
     <Drawer>
-      <DrawerTrigger className=" text-sm text-primary hover:text-foreground duration-300 transition-all">
-        <FilePenLine className="w-5 h-5" />
+      <DrawerTrigger className=" text-xs flex items-center text-purple-400 gap-1 rounded-md p-2 hover:text-purple-300 border border-purple-400 duration-300 transition-all hover:border-purple-300">
+        <Pen className="w-3 h-3" /> Edit
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Update Student</DrawerTitle>
-        </DrawerHeader>
-        <DrawerContent>
+          <DrawerTitle className="text-center text-foreground">
+            Update Student
+          </DrawerTitle>
           <StudentForm
             mode="edit"
             initialData={{
@@ -88,7 +93,7 @@ export default function UpdateStudent({ student_id, name, email }: Student) {
             }}
             onSubmit={handleSubmit}
           />
-        </DrawerContent>
+        </DrawerHeader>
       </DrawerContent>
     </Drawer>
   );

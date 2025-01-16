@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -35,7 +31,7 @@ body {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 20 14.3% 4.1%;
+    --background: 0 0% 7%;
     --foreground: 60 9.1% 97.8%;
     --card: 20 14.3% 4.1%;
     --card-foreground: 60 9.1% 97.8%;
@@ -43,7 +39,7 @@ body {
     --popover-foreground: 60 9.1% 97.8%;
     --primary: 151 78% 31%;
     --primary-foreground: 24 9.8% 10%;
-    --secondary: 12 6.5% 15.1%;
+    --secondary: 0 0% 9%;
     --secondary-foreground: 60 9.1% 97.8%;
     --muted: 12 6.5% 15.1%;
     --muted-foreground: 24 5.4% 63.9%;
@@ -51,7 +47,7 @@ body {
     --accent-foreground: 60 9.1% 97.8%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 60 9.1% 97.8%;
-    --border: 12 6.5% 15.1%;
+    --border: 0 0% 13%;
     --input: 12 6.5% 15.1%;
     --ring: 24 5.7% 82.9%;
     --chart-1: 220 70% 50%;
@@ -67,7 +63,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-muted-foreground;
+    @apply bg-secondary text-muted-foreground font-sans;
   }
 }
 

@@ -18,7 +18,13 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 
-export default function DeleteStudent({ id }: { id: string }) {
+export default function DeleteStudent({
+  id,
+  name,
+}: {
+  id: string;
+  name: string;
+}) {
   const { toast } = useToast();
   const router = useRouter();
   const handleDelete = async () => {
@@ -40,17 +46,17 @@ export default function DeleteStudent({ id }: { id: string }) {
   };
   return (
     <Dialog>
-      <DialogTrigger className="text-sm ml-6 text-destructive hover:text-foreground duration-300 transition-all">
-        <Trash2 className="w-5 h-5" />
+      <DialogTrigger className="text-xs flex items-center ml-6 text-destructive p-2 rounded-md border border-destructive gap-1 hover:text-destructive/75 hover:border-destructive/75 duration-300 transition-all">
+        <Trash2 className="w-3 h-3" /> Delete
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-center">
             Are you absolutely sure?
           </DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete the
-            student.
+          <DialogDescription className="max-w-[35ch] text-center mx-auto">
+            This action cannot be undone. This will permanently delete{" "}
+            <span className="text-destructive">{name}</span> .
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="sm:justify-between gap-8">
