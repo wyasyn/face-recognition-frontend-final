@@ -65,6 +65,11 @@
   body {
     @apply bg-secondary text-muted-foreground font-sans;
   }
+  h1,
+  h2,
+  h3 {
+    @apply text-foreground font-medium;
+  }
 }
 
 .container {
