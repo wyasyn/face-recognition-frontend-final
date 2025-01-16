@@ -6,14 +6,20 @@ import DeleteStudent from "./DeleteStudent";
 import UpdateStudent from "./UpdateStudent";
 import { AlertDestructive } from "./AlertDestructive";
 import Image from "next/image";
+import { PaginationMenu } from "./PaginationMenu";
 
 const apiUrl = env.API_URL!;
 
 const tableHeads = ["Student ID", "Name", "Email", "Action"];
 
-export default async function StudentsTable() {
-  const studentsData = await axios(`${apiUrl}`);
+export default async function StudentsTable({
+  currentPage,
+}: {
+  currentPage: number;
+}) {
+  const studentsData = await axios(`${apiUrl}/?page=${currentPage}`);
   const students: Student[] = studentsData.data.students;
+  const totalPages = studentsData.data.total_pages;
 
   if (!studentsData)
     return (
@@ -94,6 +100,11 @@ export default async function StudentsTable() {
           ))}
         </tbody>
       </table>
+      <div className=" my-[3rem] ">
+        {totalPages > 1 && (
+          <PaginationMenu currentPage={currentPage} totalPages={totalPages} />
+        )}
+      </div>
     </div>
   );
 }
